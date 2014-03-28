@@ -7,7 +7,16 @@ class Url < Sinatra::Application
 
   get '/' do
     @search = params[:search]
-    erb :index
+    error_message = ''
+    if @search != nil
+      if @search.empty?
+        error_message = "URL cannot be blank"
+      else
+        error_message = @search + " is not a valid URL"
+      end
+    end
+
+    erb :index, :locals => {:error_message => error_message}
   end
 
   post '/url/add' do

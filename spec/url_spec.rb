@@ -42,4 +42,11 @@ feature 'URL Shortener' do
     expect(page).to have_content('google is not a valid URL')
   end
 
+  scenario 'User doesnt enter anything into the url shortener field' do
+    visit '/'
+    fill_in('url', :with => "   ")
+    click_on('Shorten')
+    expect(page).to have_content('URL cannot be blank')
+  end
+
 end
