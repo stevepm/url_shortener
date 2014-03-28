@@ -49,4 +49,13 @@ feature 'URL Shortener' do
     expect(page).to have_content('URL cannot be blank')
   end
 
+  scenario 'User can navigate back to the homepage after shortening a URL' do
+    visit '/'
+    fill_in('url', :with => "http://google.com")
+    click_on('Shorten')
+    click_on('Shorten another link')
+    expect(page).to have_field('url')
+    expect(page).to have_button('Shorten')
+  end
+
 end
