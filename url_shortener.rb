@@ -15,8 +15,11 @@ class Url < Sinatra::Application
         error_message = @search + " is not a valid URL"
       end
     end
+    if @search != nil
+      placeholder = @search.strip
+    end
 
-    erb :index, :locals => {:error_message => error_message}
+    erb :index, :locals => {:error_message => error_message, :placeholder => placeholder}
   end
 
   post '/url/add' do
