@@ -5,7 +5,7 @@ Capybara.app = Url
 
 feature 'URL Shortener' do
   background do
-    URLS_ARRAY = []
+    Url::URL_REPOSITORY = UrlRepository.new
   end
 
   scenario 'User goes to homepage' do
@@ -16,23 +16,30 @@ feature 'URL Shortener' do
 
   scenario 'User can shorten a URL' do
     visit '/'
-    fill_in('url', :with => "gschool.it")
+    fill_in('url', :with => "http://gschool.it")
     click_on('Shorten')
-    expect(page).to have_content("gschool.it")
+    expect(page).to have_content("http://gschool.it")
     expect(page).to have_content("www.example.com/1")
     visit '/'
-    fill_in('url', :with => "hello.it")
+    fill_in('url', :with => "http://hello.it")
     click_on('Shorten')
-    expect(page).to have_content("hello.it")
+    expect(page).to have_content("http://hello.it")
     expect(page).to have_content("www.example.com/2")
   end
 
   scenario 'User can visit shortened URL' do
     visit '/'
-    fill_in('url', :with => "google.com")
+    fill_in('url', :with => "http://google.com")
     click_on('Shorten')
-    visit '/3'
+    visit '/1'
     expect(page.current_url).to eq('http://google.com/')
+  end
+
+  scenario 'User enters a string that is not a URL' do
+    visit '/'
+    fill_in('url', :with => "google")
+    click_on('Shorten')
+    expect(page).to have_content('google is not a valid URL')
   end
 
 end
