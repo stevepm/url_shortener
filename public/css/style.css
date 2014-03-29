@@ -8,9 +8,6 @@ div.center {
 }
 
 div.textcenter {
-  /*position:absolute;*/
-  /*top:50%;*/
-  /*left:50%;*/
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -19,36 +16,34 @@ div.textcenter {
 
 input.input {
   width: 250px;
+  border: 3px solid black;
 }
 
 input.button {
   background-color: dodgerblue;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
   color: ghostwhite;
   font-family: 'Impact';
-  font-size: 30px;
-  text-decoration: none;
+  font-size: 20px;
   cursor: pointer;
-  border: 20px;
-  border: darkorange;
+  border: 3px solid black;
   box-shadow: 5px 5px 5px #888888;
+  padding:5px 15px 5px 15px;
+  margin-top:15px;
 }
 
 input.button:hover {
-  border: none;
-  background: green;
+  background: dodgerblue;
+  border: 3px solid black;
   box-shadow: 5px 5px 5px #888888;
 }
 
 input.button:active {
-  border: none;
-  background: green;
+  background: dodgerblue;
+  border: 3px solid black;
   box-shadow: 2px 2px 2px #888888;
 }
 
-p.large_text {
+span.large_text {
   color: dodgerblue;
   font-size: 20px;
 }
@@ -57,8 +52,20 @@ p.wrong_url {
   color: darkred;
   font-style: bold;
   font-size: 18px;
+  padding-top:60px;
+}
+
+div.error{
+  height:100px;
 }
 
 div.link {
 
+}
+table{
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
+  text-align: left;
+  line-height: 200%;
 }

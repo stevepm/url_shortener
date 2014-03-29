@@ -5,6 +5,7 @@ require 'uri'
 class Url < Sinatra::Application
   URL_REPOSITORY = UrlRepository.new
 
+
   get '/' do
     @search = params[:search]
     error_message = ''
@@ -23,6 +24,7 @@ class Url < Sinatra::Application
   end
 
   post '/url/add' do
+    domain_url = request.host
     url = params[:url]
     if url.split(" ").count == 1
       if (url =~ /^#{URI::regexp}$/) == nil
@@ -30,7 +32,7 @@ class Url < Sinatra::Application
       else
         URL_REPOSITORY.shorten(URI(url).host)
         new_url = request.host+"/"+URL_REPOSITORY.counter.to_s
-        erb :shorten, :locals => {:your_url => url, :new_url => new_url}
+        erb :shorten, :locals => {:your_url => url, :new_url => new_url, :domain_url => domain_url}
       end
     else
       redirect "/?search=#{url.split(" ").join("+")}"

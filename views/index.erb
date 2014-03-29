@@ -1,6 +1,9 @@
-<div class="textcenter">
-  <p class="wrong_url"><%= error_message %></p>
 
+
+<div class="textcenter">
+  <div class="error">
+    <p class="wrong_url"><%= error_message %></p>
+  </div>
   <form action="/url/add" method="post">
     <input class="input" type="text" name="url" placeholder="Enter the URL you would like to 'shorten'" value="<%= placeholder %>"><br>
     <input class="button" type="submit" value="Shorten">
