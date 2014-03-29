@@ -24,9 +24,6 @@ class Url < Sinatra::Application
 
   post '/url/add' do
     url = params[:url]
-    if ("http://" + url =~ /^#{URI::regexp}$/) != nil
-      url = "http://" + url
-    end
     if url.split(" ").count == 1
       if (url =~ /^#{URI::regexp}$/) == nil
         redirect "/?search=#{url}"
@@ -57,14 +54,9 @@ class Url < Sinatra::Application
     end
   end
 
-  get '/test/test' do
-    redirect 'http://google.com'
+  not_found do
+    status 404
+    redirect '/'
   end
-
-  #not_found do
-  #  status 404
-  #  redirect '/'
-  #end
-
 
 end
