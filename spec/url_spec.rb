@@ -58,4 +58,19 @@ feature 'URL Shortener' do
     expect(page).to have_button('Shorten')
   end
 
+  scenario 'User can see stats of how many URLS shortened' do
+    visit '/'
+    fill_in('url', :with => "http://gschool.it")
+    click_on('Shorten')
+    expect(page).to have_content("http://gschool.it")
+    expect(page).to have_content("www.example.com/1")
+    visit '/1'
+    visit '/1'
+    visit '/1'
+    visit '/1'
+    visit '/1'
+    visit '/1?stats=true'
+    expect(page).to have_content("gschool.it has been visited 5 times.")
+  end
+
 end

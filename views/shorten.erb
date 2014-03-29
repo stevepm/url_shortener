@@ -1,10 +1,10 @@
 <div class="textcenter">
   <p class="large_text">Original URL:</p>
 
-  <p><%= url %></p><br><br>
+  <p><%= your_url %></p><br><br>
 
   <p class="large_text">New URL:</p>
 
   <p><%= new_url %></p>
-  <p><a href="<%= url %>">Shorten another link</a></p>
+  <p><a href="<%= request.env["SERVER_NAME"] %>">Shorten another link</a></p>
 </div>

@@ -30,7 +30,7 @@ class Url < Sinatra::Application
       else
         URL_REPOSITORY.shorten(URI(url).host)
         new_url = request.host+"/"+URL_REPOSITORY.counter.to_s
-        erb :shorten, :locals => {:url => url, :new_url => new_url}
+        erb :shorten, :locals => {:your_url => url, :new_url => new_url}
       end
     else
       redirect "/?search=#{url.split(" ").join("+")}"
@@ -39,14 +39,23 @@ class Url < Sinatra::Application
 
   get '/:id' do
     id = (params[:id].to_i) - 1
-
+    stat_page = params[:stats]
     if URL_REPOSITORY.counter == 0
       redirect '/'
     else
       original_url = URL_REPOSITORY.find_url(id)
-      redirect "http://#{original_url}"
+      stats = URL_REPOSITORY.get_stats(id)
+      if stat_page == "true"
+        erb :stats, :locals => {:id => id, :your_url => original_url, :stats => stats}
+      else
+        URL_REPOSITORY.increase_stats(id)
+        redirect "http://#{original_url}"
+      end
     end
   end
 
-
+  not_found do
+    status 404
+    redirect '/'
+  end
 end
