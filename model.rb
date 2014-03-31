@@ -23,4 +23,15 @@ class UrlRepository
     @shortened_urls[id][2]
   end
 
+  def find_id(url)
+    hash = Hash[@shortened_urls.map.with_index.to_a]
+    counter = 0
+    hash.each_key do |key|
+      if key[0] == url
+        return counter + 1
+      end
+      counter += 1
+    end
+  end
+
 end

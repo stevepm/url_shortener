@@ -70,7 +70,7 @@ feature 'URL Shortener' do
     visit '/1'
     visit '/1'
     visit '/1?stats=true'
-    expect(page).to have_content("gschool.it has been visited 5 times.")
+    expect(page).to have_content("http://www.example.com/1 has been visited 5 times.")
   end
 
 end

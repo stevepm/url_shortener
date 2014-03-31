@@ -1,3 +1,25 @@
-<p>
-  <%= your_url %> has been visited <%= stats %> times.
-</p>
+<div class="textcenter">
+  <table>
+    <tr>
+      <td>
+        <span class="large_text">Original URL:</span>
+      </td>
+      <td>
+        <%= your_url %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="large_text">Shortened URL:</span>
+      </td>
+      <td>
+        <%= new_url %>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <%= new_url %> has been visited <%= stats %> times.
+  </p>
+  <p><a href="<%= domain_url %>">Shorten another link</a></p>
+</div>
+

@@ -24,15 +24,13 @@ class Url < Sinatra::Application
   end
 
   post '/url/add' do
-    domain_url = request.host
     url = params[:url]
     if url.split(" ").count == 1
       if (url =~ /^#{URI::regexp}$/) == nil
         redirect "/?search=#{url}"
       else
         URL_REPOSITORY.shorten(URI(url).host)
-        new_url = request.host+"/"+URL_REPOSITORY.counter.to_s
-        erb :shorten, :locals => {:your_url => url, :new_url => new_url, :domain_url => domain_url}
+        redirect "#{request.base_url}/#{URL_REPOSITORY.find_id(URI(url).host)}?stats=true"
       end
     else
       redirect "/?search=#{url.split(" ").join("+")}"
@@ -40,18 +38,20 @@ class Url < Sinatra::Application
   end
 
   get '/:id' do
+    domain_url = request.base_url
     id = (params[:id].to_i) - 1
     stat_page = params[:stats]
     if URL_REPOSITORY.counter == 0
       redirect '/'
     else
-      original_url = URL_REPOSITORY.find_url(id)
+      original_url = "http://"+URL_REPOSITORY.find_url(id)
+      new_url = request.base_url+"/"+URL_REPOSITORY.find_id(URI(original_url).host).to_s
       stats = URL_REPOSITORY.get_stats(id)
       if stat_page == "true"
-        erb :stats, :locals => {:id => id, :your_url => original_url, :stats => stats}
+        erb :stats, :locals => {:id => id, :your_url => original_url, :stats => stats, :new_url => new_url, :domain_url => domain_url}
       else
         URL_REPOSITORY.increase_stats(id)
-        redirect "http://#{original_url}"
+        redirect original_url
       end
     end
   end
