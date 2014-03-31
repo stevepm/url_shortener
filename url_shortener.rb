@@ -37,9 +37,12 @@ class Url < Sinatra::Application
     end
   end
 
+  get '/favicon.ico' do
+  end
+
   get '/:id' do
     domain_url = request.base_url
-    id = (params[:id].to_i) - 1
+    id = (params[:id].to_i)
     stat_page = params[:stats]
     if URL_REPOSITORY.counter == 0
       redirect '/'
@@ -50,6 +53,7 @@ class Url < Sinatra::Application
       if stat_page == "true"
         erb :stats, :locals => {:id => id, :your_url => original_url, :stats => stats, :new_url => new_url, :domain_url => domain_url}
       else
+        puts params[:id]
         URL_REPOSITORY.increase_stats(id)
         redirect original_url
       end

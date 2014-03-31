@@ -64,6 +64,8 @@ feature 'URL Shortener' do
     click_on('Shorten')
     expect(page).to have_content("http://gschool.it")
     expect(page).to have_content("www.example.com/1")
+    visit '/1?stats=true'
+    visit '/1?stats=true'
     visit '/1'
     visit '/1'
     visit '/1'
