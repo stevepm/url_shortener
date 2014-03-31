@@ -15,8 +15,9 @@ div.textcenter {
 }
 
 input.input {
-  width: 250px;
+  width: 350px;
   border: 3px solid black;
+  font-size: 16px;
 }
 
 input.button {
@@ -28,7 +29,7 @@ input.button {
   border: 3px solid black;
   box-shadow: 5px 5px 5px #888888;
   padding:5px 15px 5px 15px;
-  margin-top:15px;
+  margin-top:10px;
 }
 
 input.button:hover {
