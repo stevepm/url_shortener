@@ -75,4 +75,12 @@ feature 'URL Shortener' do
     expect(page).to have_content("http://www.example.com/1 has been visited 5 times.")
   end
 
+  scenario 'User can enter a vanity URL' do
+    visit '/'
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "Steve")
+    click_on('Shorten')
+    expect(page).to have_content("http://gschool.it")
+    expect(page).to have_content("www.example.com/Steve")
+  end
 end
