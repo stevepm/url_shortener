@@ -4,7 +4,7 @@ require 'uri'
 
 class Url < Sinatra::Application
   URL_REPOSITORY = UrlRepository.new
-  set :vanityurl => nil
+
 
   get '/' do
     @search = params[:search]
@@ -20,18 +20,16 @@ class Url < Sinatra::Application
       placeholder = @search.strip
     end
 
-    erb :index, :locals => {:error_message => error_message, :placeholder => placeholder, :vanityholder => settings.vanityurl}
+    erb :index, :locals => {:error_message => error_message, :placeholder => placeholder}
   end
 
   post '/url/add' do
     url = params[:url]
-    settings.vanityurl = params[:vanity]
     if url.split(" ").count == 1
       if (url =~ /^#{URI::regexp}$/) == nil
         redirect "/?search=#{url}"
       else
-        URL_REPOSITORY.shorten(URI(url).host,settings.vanityurl)
-        settings.vanityurl = nil
+        URL_REPOSITORY.shorten(URI(url).host)
         redirect "#{request.base_url}/#{URL_REPOSITORY.find_id(URI(url).host)}?stats=true"
       end
     else
