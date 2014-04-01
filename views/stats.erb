@@ -1,7 +1,7 @@
 <div class="textcenter">
   <table>
     <tr>
-      <td>
+      <td class="label">
         <span class="large_text">Original URL:</span>
       </td>
       <td>
@@ -9,7 +9,7 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="label">
         <span class="large_text">Shortened URL:</span>
       </td>
       <td>
@@ -17,9 +17,9 @@
       </td>
     </tr>
   </table>
-  <p>
+  <p class="stats">
     <%= new_url %> has been visited <%= stats %> times.
   </p>
-  <p><a href="<%= domain_url %>">Shorten another link</a></p>
+  <p class="stats"><a href="<%= domain_url %>">Shorten another link</a></p>
 </div>
 

@@ -1,3 +1,6 @@
+html{
+  font-family: 'Hammersmith One', sans-serif;
+}
 body {
   background-color: whitesmoke;
 }
@@ -18,6 +21,7 @@ input.input {
   width: 350px;
   border: 3px solid black;
   font-size: 16px;
+  font-family: 'Hammersmith One', sans-serif;
 }
 
 input.button {
@@ -46,7 +50,7 @@ input.button:active {
 
 span.large_text {
   color: dodgerblue;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 p.wrong_url {
@@ -64,9 +68,17 @@ div.link {
 
 }
 table{
-  width:70%;
-  margin-left:15%;
-  margin-right:15%;
+  width:600px;
+  margin-left:auto;
+  margin-right:auto;
   text-align: left;
   line-height: 200%;
+  font-size: 20px;
+}
+p.stats{
+  font-size:20px;
+}
+
+td.label {
+  width: 200px;
 }
