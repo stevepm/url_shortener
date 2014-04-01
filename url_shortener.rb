@@ -41,7 +41,7 @@ class Url < Sinatra::Application
     domain_url = request.base_url
     id = (params[:id].to_i)
     stat_page = params[:stats]
-    if URL_REPOSITORY.counter == 0
+    if URL_REPOSITORY.id == 0
       redirect '/'
     else
       original_url = "http://"+URL_REPOSITORY.find_url(id)

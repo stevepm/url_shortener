@@ -1,14 +1,14 @@
 class UrlRepository
-  attr_reader :shortened_urls, :counter
+  attr_reader :shortened_urls, :id
 
   def initialize
     @shortened_urls = []
-    @counter = @shortened_urls.count
+    @id = @shortened_urls.count
   end
 
   def shorten(url)
-    @counter += 1
-    @shortened_urls << [url, @counter, 0]
+    @id += 1
+    @shortened_urls << [url, @id, 0]
   end
 
   def find_url(id)
