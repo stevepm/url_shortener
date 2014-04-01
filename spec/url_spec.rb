@@ -6,6 +6,7 @@ Capybara.app = Url
 feature 'URL Shortener' do
   background do
     Url::URL_REPOSITORY = UrlRepository.new
+    Url::settings.vanityurl = nil
   end
 
   scenario 'User goes to homepage' do
@@ -82,5 +83,17 @@ feature 'URL Shortener' do
     click_on('Shorten')
     expect(page).to have_content("http://gschool.it")
     expect(page).to have_content("www.example.com/Steve")
+  end
+
+  scenario 'User gets an error for duplicate URLs' do
+    visit '/'
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "gschool")
+    click_on('Shorten')
+    click_on('Shorten another link')
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "gschool")
+    click_on('Shorten')
+    expect(page).to have_content("gschool is already taken")
   end
 end
