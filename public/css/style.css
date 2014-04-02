@@ -64,9 +64,18 @@ div.error{
   height:100px;
 }
 
-div.link {
-
+#vanity_constraints{
+  width: 200px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 11px;
 }
+
+#vanity_constraints ul{
+  text-align: left;
+}
+
 table{
   width:800px;
   margin-left:auto;

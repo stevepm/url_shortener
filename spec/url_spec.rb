@@ -6,7 +6,7 @@ Capybara.app = Url
 feature 'URL Shortener' do
   background do
     Url::URL_REPOSITORY = UrlRepository.new
-    Url::settings.vanityurl = nil
+    Url::settings.vanity_url = nil
   end
 
   scenario 'User goes to homepage' do
@@ -103,5 +103,14 @@ feature 'URL Shortener' do
     fill_in('vanity', :with => "fuck")
     click_on('Shorten')
     expect(page).to have_content("Profanity is not allowed")
+  end
+
+  scenario 'User gets an error when they try to post a vanity URL greater than 12 characters' do
+    visit '/'
+    expect(page).to have_content("Maximum 12 characters")
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "morethantwelve")
+    click_on('Shorten')
+    expect(page).to have_content("Vanity URL must be 12 characters or shorter")
   end
 end
