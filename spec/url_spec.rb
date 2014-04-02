@@ -64,15 +64,7 @@ feature 'URL Shortener' do
     visit '/'
     fill_in('url', :with => "http://gschool.it")
     click_on('Shorten')
-    expect(page).to have_content("http://gschool.it")
-    expect(page).to have_content("www.example.com/1")
-    visit '/1?stats=true'
-    visit '/1?stats=true'
-    visit '/1'
-    visit '/1'
-    visit '/1'
-    visit '/1'
-    visit '/1'
+    5.times { visit '/1' }
     visit '/1?stats=true'
     expect(page).to have_content("http://www.example.com/1 has been visited 5 times.")
   end
