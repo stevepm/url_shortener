@@ -13,13 +13,11 @@
         <span class="large_text">Shortened URL:</span>
       </td>
       <td>
-        <%= new_url %>
+        <a href="<%= new_url %>"><%= new_url %></a>
       </td>
     </tr>
   </table>
-  <p class="stats">
-    <%= new_url %> has been visited <%= stats %> times.
-  </p>
+  <p class="stats"><%= new_url %> has been visited <%= stats %> times.</p>
+
   <p class="stats"><a href="<%= domain_url %>">Shorten another link</a></p>
 </div>
-
