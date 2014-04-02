@@ -6,7 +6,7 @@
   </div>
   <form action="/url/add" method="post">
     <input class="input" type="text" name="url" placeholder="Enter the URL you would like to 'shorten'" value="<%= placeholder %>" autofocus><br>
-    <input class="input" type="text" name="vanity" placeholder="Optional: Enter a vanity name'" value="<%= vanityholder %>" ><br>
+    <input class="input" type="text" name="vanity" placeholder="Optional: Enter a vanity name'" maxlength="12" value="<%= vanityholder %>" ><br>
     <input class="button" type="submit" value="Shorten">
   </form>
 </div>
