@@ -7,6 +7,7 @@ feature 'URL Shortener' do
   background do
     Url::URL_REPOSITORY = UrlRepository.new
     Url::settings.vanity_url = nil
+    Url::settings.original_url = nil
   end
 
   scenario 'User goes to homepage' do
@@ -59,7 +60,7 @@ feature 'URL Shortener' do
     expect(page).to have_button('Shorten')
   end
 
-  scenario 'User can see stats of how many URLS shortened' do
+  scenario 'User can see stats of the URL shortened' do
     visit '/'
     fill_in('url', :with => "http://gschool.it")
     click_on('Shorten')
