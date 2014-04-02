@@ -21,6 +21,8 @@ class Url < Sinatra::Application
         error_message = "Profanity is not allowed"
       elsif settings.vanity_url.length > 12
         error_message = "Vanity URL must be 12 characters or shorter"
+      elsif settings.vanity_url =~ (/\d/)
+        error_message = "Vanity URL cannot contain numbers"
       elsif URL_REPOSITORY.vanity_taken?(settings.vanity_url)
         error_message = settings.vanity_url + " is already taken"
       else
@@ -38,7 +40,7 @@ class Url < Sinatra::Application
     url = params[:url]
     settings.vanity_url = params[:vanity]
     if url.split(" ").count == 1
-      if (url =~ /^#{URI::regexp}$/) == nil || URL_REPOSITORY.vanity_taken?(settings.vanity_url) || Obscenity.profane?(settings.vanity_url) || settings.vanity_url.length > 12
+      if (url =~ /^#{URI::regexp}$/) == nil || URL_REPOSITORY.vanity_taken?(settings.vanity_url) || Obscenity.profane?(settings.vanity_url) || settings.vanity_url.length > 12 || settings.vanity_url =~ (/\d/)
         redirect "/?search=#{url}"
       else
         URL_REPOSITORY.shorten(URI(url), settings.vanity_url)

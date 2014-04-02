@@ -113,4 +113,12 @@ feature 'URL Shortener' do
     click_on('Shorten')
     expect(page).to have_content("Vanity URL must be 12 characters or shorter")
   end
+
+  scenario 'User tries to add a vanity url with numbers in it' do
+    visit '/'
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "morethan12")
+    click_on('Shorten')
+    expect(page).to have_content("Vanity URL cannot contain numbers")
+  end
 end
