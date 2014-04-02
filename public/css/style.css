@@ -1,6 +1,7 @@
-html{
+html {
   font-family: 'Hammersmith One', sans-serif;
 }
+
 body {
   background-color: whitesmoke;
 }
@@ -32,8 +33,8 @@ input.button {
   cursor: pointer;
   border: 3px solid black;
   box-shadow: 5px 5px 5px #888888;
-  padding:5px 15px 5px 15px;
-  margin-top:10px;
+  padding: 5px 15px 5px 15px;
+  margin-top: 10px;
 }
 
 input.button:hover {
@@ -57,14 +58,14 @@ p.wrong_url {
   color: darkred;
   font-style: bold;
   font-size: 18px;
-  padding-top:60px;
+  padding-top: 60px;
 }
 
-div.error{
-  height:100px;
+div.error {
+  height: 100px;
 }
 
-#vanity_constraints{
+#vanity_constraints {
   width: 200px;
   margin-top: 30px;
   margin-left: auto;
@@ -72,20 +73,21 @@ div.error{
   font-size: 11px;
 }
 
-#vanity_constraints ul{
+#vanity_constraints ul {
   text-align: left;
 }
 
-table{
-  width:800px;
-  margin-left:auto;
-  margin-right:auto;
+table {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
   line-height: 200%;
   font-size: 20px;
 }
-p.stats{
-  font-size:20px;
+
+p.stats {
+  font-size: 20px;
 }
 
 td.label {
