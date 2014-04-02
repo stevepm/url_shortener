@@ -30,14 +30,14 @@ class Url < Sinatra::Application
 
   get '/:id' do
     id = params[:id]
-    stat_page = params[:stats]
+    view_stats = params[:stats]
     if URL_REPOSITORY.id == 0
       redirect '/'
     else
       original_url = URL_REPOSITORY.find_url(id)
-      new_url = request.base_url+"/"+URL_REPOSITORY.find_id(original_url)
+      new_url = request.base_url + "/" + id
       stats = URL_REPOSITORY.get_stats(id)
-      if stat_page == "true"
+      if view_stats == "true"
         erb :stats, :locals => {:id => id, :your_url => original_url, :stats => stats, :new_url => new_url, :domain_url => request.base_url}
       else
         URL_REPOSITORY.increase_stats(id)
