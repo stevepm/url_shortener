@@ -96,4 +96,12 @@ feature 'URL Shortener' do
     click_on('Shorten')
     expect(page).to have_content("gschool is already taken")
   end
+
+  scenario 'User gets an error when trying to add profanity to a vanity URL' do
+    visit '/'
+    fill_in('url', :with => "http://gschool.it")
+    fill_in('vanity', :with => "fuck")
+    click_on('Shorten')
+    expect(page).to have_content("Profanity is not allowed")
+  end
 end

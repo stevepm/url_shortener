@@ -1,3 +1,5 @@
+require 'obscenity'
+require 'yaml'
 class UrlRepository
   attr_reader :shortened_urls, :id
 
@@ -63,4 +65,7 @@ class UrlRepository
     id.to_s
   end
 
+end
+Obscenity.configure do |config|
+  config.blacklist = './words.yml'
 end

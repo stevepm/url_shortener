@@ -1,17 +1,22 @@
 require 'sinatra/base'
+require 'obscenity'
 require './model'
 require 'uri'
 
 class Url < Sinatra::Application
+
   URL_REPOSITORY = UrlRepository.new
   set :vanityurl => nil
 
   get '/' do
+
     @search = params[:search]
     error_message = ''
     if @search != nil
       if @search.empty?
         error_message = "URL cannot be blank"
+      elsif Obscenity.profane?(settings.vanityurl)
+        error_message = "Profanity is not allowed"
       elsif URL_REPOSITORY.vanity_taken?(settings.vanityurl)
         error_message = settings.vanityurl + " is already taken"
       else
@@ -29,10 +34,10 @@ class Url < Sinatra::Application
     url = params[:url]
     settings.vanityurl = params[:vanity]
     if url.split(" ").count == 1
-      if (url =~ /^#{URI::regexp}$/) == nil || URL_REPOSITORY.vanity_taken?(settings.vanityurl)
+      if (url =~ /^#{URI::regexp}$/) == nil || URL_REPOSITORY.vanity_taken?(settings.vanityurl) || Obscenity.profane?(settings.vanityurl)
         redirect "/?search=#{url}"
       else
-        URL_REPOSITORY.shorten(URI(url),settings.vanityurl)
+        URL_REPOSITORY.shorten(URI(url), settings.vanityurl)
         settings.vanityurl = nil
         redirect "#{request.base_url}/#{URL_REPOSITORY.find_id(URI(url))}?stats=true"
       end

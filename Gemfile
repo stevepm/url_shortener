@@ -9,3 +9,4 @@ end
 
 
 gem 'sinatra', '~> 1.4.4'
+gem 'obscenity', '~> 1.0.2'
