@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+# Always define your version of ruby to ensure bundler uses consistent gems across environments
+ruby '2.0.0'
+
 group :test do
   gem 'rspec', '~> 2.14.1'
   gem 'capybara', '~> 2.2.1'
