@@ -33,6 +33,11 @@ GEM
     rspec-mocks (2.14.6)
     shotgun (0.9)
       rack (>= 1.0)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -50,4 +55,5 @@ DEPENDENCIES
   obscenity (~> 1.0.2)
   rspec (~> 2.14.1)
   shotgun (~> 0.9)
+  simplecov
   sinatra (~> 1.4.4)
